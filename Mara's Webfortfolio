@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mara's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            overflow-x: hidden;
+            background: #E8D5C4;
+        }
+
+        /* Vintage Seaside Background Scene */
+        .seaside-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                #87CEEB 0%, 
+                #B0D8E8 30%, 
+                #D4E8F0 60%, 
+                #E8D5C4 85%, 
+                #D4BC96 100%);
+            z-index: -2;
+        }
+
+        /* Sun */
+        .sun {
+            position: fixed;
+            top: 80px;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6);
+            z-index: -1;
+            animation: sunset 10s ease-in-out infinite;
+        }
+
+        @keyframes sunset {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(20px); opacity: 0.8; }
+        }
+
+        /* Ocean Waves */
+        .ocean-layer1, .ocean-layer2 {
+            position: fixed;
+            width: 100%;
+            height: 30%;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .ocean-layer1 {
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(41, 128, 185, 0.3) 50%,
+                rgba(41, 128, 185, 0.6) 100%);
+            animation: wave1 4s ease-in-out infinite;
+        }
+
+        .ocean-layer2 {
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(52, 152, 219, 0.2) 50%,
+                rgba(52, 152, 219, 0.5) 100%);
+            animation: wave2 5s ease-in-out infinite;
+        }
+
+        @keyframes wave1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes wave2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Sandy Beach */
+        .beach {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, 
+                #D4BC96 0%, 
+                #E8D5C4 40%, 
+                transparent 100%);
+            z-index: -1;
+        }
+
+        /* Lighthouse */
+        .lighthouse {
+            position: fixed;
+            bottom: 100px;
+            right: 10%;
+            width: 80px;
+            height: 250px;
+            z-index: -1;
+        }
+
+        .lighthouse-base {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(to bottom, #7F8C8D 0%, #95A5A6 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .lighthouse-tower {
+            width: 60px;
+            height: 180px;
+            background: linear-gradient(to right, #C41E3A 0%, #E74C3C 50%, #C41E3A 100%);
+            position: absolute;
+            bottom: 50px;
+            left: 10px;
+            border-radius: 3px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .lighthouse-tower::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            left: 15px;
+            border-radius: 2px;
+        }
+
+        .lighthouse-top {
+            width: 70px;
+            height: 60px;
+            background: linear-gradient(to bottom, #2C3E50 0%, #34495E 100%);
+            border-radius: 35px 35px 0 0;
+            position: absolute;
+            bottom: 230px;
+            left: 5px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+
+        .lighthouse-light {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #FFF9C4 0%, #FFD54F 50%, transparent 70%);
+            border-radius: 50%;
+            top: 15px;
+            left: 20px;
+            animation: lighthouse-beam 2s ease-in-out infinite;
+        }
+
+        @keyframes lighthouse-beam {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px #FFD54F, 0 0 40px #FFD54F; }
+            50% { opacity: 0.5; box-shadow: 0 0 40px #FFD54F, 0 0 80px #FFD54F; }
+        }
+
+        /* Seagull */
+        .seagull {
+            position: fixed;
+            bottom: 400px;
+            right: 25%;
+            width: 60px;
+            height: 40px;
+            z-index: -1;
+            animation: seagull-fly 8s ease-in-out infinite;
+        }
+
+        @keyframes seagull-fly {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-100px, -50px); }
+            50% { transform: translate(-150px, -20px); }
+            75% { transform: translate(-100px, -60px); }
+        }
+
+        .seagull-body {
+            width: 60px;
+            height: 40px;
+            background: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .seagull-body::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: #5D4E37;
+            top: 20px;
+            left: 0;
+            border-radius: 10px 0 0 10px;
+            transform: rotate(-20deg);
+            animation: wing-left 1s ease-in-out infinite;
+        }
+
+        .seagull-body::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: #5D4E37;
+            top: 20px;
+            right: 0;
+            border-radius: 0 10px 10px 0;
+            transform: rotate(20deg);
+            animation: wing-right 1s ease-in-out infinite;
+        }
+
+        @keyframes wing-left {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(-40deg); }
+        }
+
+        @keyframes wing-right {
+            0%, 100% { transform: rotate(20deg); }
+            50% { transform: rotate(40deg); }
+        }
+
+        /* Ocean Sparkle Cursor */
+        .cursor-sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(135, 206, 250, 0.9), rgba(100, 200, 255, 0.5));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 0 10px rgba(135, 206, 250, 0.8);
+        }
+
+        /* Login Container */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-box {
+            background: rgba(245, 242, 235, 0.95);
+            border: 3px solid rgba(41, 128, 185, 0.3);
+            border-radius: 25px;
+            padding: 50px 45px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: #2C3E50;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: #5D6D7E;
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #2C3E50;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 18px;
+            background: white;
+            border: 2px solid rgba(41, 128, 185, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            color: #2C3E50;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #3498DB;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .error-message {
+            color: #E74C3C;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #E74C3C;
+        }
+
+        /* Main Portfolio Content */
+        .portfolio-content {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        .nav-header {
+            background: rgba(245, 242, 235, 0.98);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid rgba(41, 128, 185, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-header h1 {
+            color: #2C3E50;
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #2C3E50;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #3498DB;
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .logout-btn {
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 60px 40px;
+            background: rgba(245, 242, 235, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(41, 128, 185, 0.2);
+        }
+
+        .section h2 {
+            color: #2C3E50;
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #5D6D7E;
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Home Section */
+        .home-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 5px solid #3498DB;
+            background: linear-gradient(135deg, #E8F4F8 0%, #D6EAF8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #5D6D7E;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .home-content h3 {
+            font-size: 32px;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .home-content p {
+            font-size: 18px;
+            color: #5D6D7E;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Personal Info Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(41, 128, 185, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .info-card h3 {
+            color: #2C3E50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p, .info-card ul {
+            color: #5D6D7E;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(41, 128, 185, 0.1);
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(41, 128, 185, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h4 {
+            color: #2C3E50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: #5D6D7E;
+            font-size: 14px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(41, 128, 185, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #D6EAF8 0%, #AED6F1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #5D6D7E;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 190%;
+            height: 160%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            color: #2C3E50;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .project-content p {
+            color: #5D6D7E;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Hobbies Section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(41, 128, 185, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: rotate(2deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .hobby-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hobby-card h4 {
+            color: #2C3E50;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .hobby-card p {
+            color: #5D6D7E;
+            font-size: 14px;
+        }
+ 
+
+        /* Photo Gallery */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.photo-item {
+    position: relative;
+    height: 250px;
+    background: linear-gradient(135deg, #E8F4F8 0%, #D6EAF8 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(41, 128, 185, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5D6D7E;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.photo-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* When there's no image, show the text in the center */
+.photo-item:not(:has(img[src])) .photo-label {
+    position: static;
+    background: transparent;
+    color: #5D6D7E;
+}
+
+/* When there's an image, hide the background gradient */
+.photo-item:has(img[src]) {
+    background: none;
+}
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(41, 128, 185, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lighthouse {
+                right: 5%;
+                transform: scale(0.8);
+            }
+
+            .seagull {
+                right: 20%;
+            }
+
+            .nav-header {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+                gap: 15px;
+            }
+
+            .section {
+                padding: 40px 20px;
+                margin: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Vintage Seaside Background -->
+    <div class="seaside-scene"></div>
+    <div class="sun"></div>
+    <div class="ocean-layer1"></div>
+    <div class="ocean-layer2"></div>
+    <div class="beach"></div>
+    
+    <!-- Lighthouse -->
+    <div class="lighthouse">
+        <div class="lighthouse-base"></div>
+        <div class="lighthouse-tower"></div>
+        <div class="lighthouse-top">
+            <div class="lighthouse-light"></div>
+        </div>
+    </div>
+
+    <!-- Seagull -->
+    <div class="seagull">
+        <div class="seagull-body"></div>
+    </div>
+
+    <!-- Login Section -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h2>Welcome</h2>
+            <p>Please login to view Mara's portfolio</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="error-message" id="errorMessage">Invalid credentials. Please try again.</div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Portfolio Content -->
+    <div class="portfolio-content" id="portfolioContent">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <h1>Mara's Portfolio</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#personal-info">Personal Info</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#hobbies">Hobbies</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <section class="section" id="home">
+            <div class="home-content">
+                <div class="profile-photo">
+                   <wbr="1890" height="2480">
+                    <img src="https://img.sanishtech.com/u/35da36c621c334209b1b8eb87078d933.jpg" alt="Mara"> -->
+                    
+                </div>
+                <h3>Hello, I'm Mara</h3>
+                <p> Welcome to my little corner of the internet. I’m a first-year student passionate about learning, creating, and growing through every experience. Feel free to explore my projects and reach out!😘 </p>
+            </div>
+        </section>
+
+        <!-- Personal Information Section -->
+        <section class="section" id="personal-info">
+            <h2>Personal Information</h2>
+            <p class="section-subtitle">Get to know me</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📚 Education</h3>
+                    <ul>
+                        <li><strong>Current:</strong> Caraga State University Cabadbaran City</li>
+                        <li><strong>Program:</strong> Bachelor of Science and Information Technology</li>
+                        <li><strong>Year:</strong> 1st year</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 Career Goals</h3>
+                    <p>I want to be a software engineer and my goal is to blend creativity with technology—using what I learn in BSIT to design solutions that make a real difference in people’s </p>
+                </div>
+                <div class="info-card">
+                    <h3>📲  Contacts</h3>
+                    <ul>
+                    <p><strong>Email:</strong> maralamanilao@gmail.com</p>
+                    <p><strong>Phone Number:</strong> 09705369956</p>
+                    <p><strong>Facebook:</strong> Mara Lamanilao</p>
+                    <p><strong>Instagram:</strong> maria_mara</p>
+                    
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🌟 Core Values</h3>
+                    <p>Faith keeps me grounded and inspires me to do my best in everything I take on. I aim to live with purpose, serve others with love, and let God lead me in both my personal and professional journey.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Current Location</h3>
+
+                    <p><strong>Country:</strong> Phillippines</p>
+                    <p><strong>Region:</strong> Agusan DelNorte</p>
+                    <p><strong>City:</strong> Cabadbaran City</p>
+                    <p><strong>Email:</strong> maralamanilao@example.com</p>
+                    
+                </div>
+                <div class="info-card">
+                    <h3>🏆 Achievements</h3>
+                    <ul>
+                        <li>Best In Leadership award</li>
+                        <li>2nd placer in DSPC Feature Writing</li>
+                        <li>With Honors since elementary to SHS</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2>Skills & Expertise</h2>
+            <p class="section-subtitle">What I bring to the table</p>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h4>Web Development</h4>
+                    <p>HTML, CSS and JavaScript</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h4>Arts</h4>
+                    <p>Poster Making, drawing </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h4>Digital Skills</h4>
+                    <p>Social media, content creation,  and graphic designing</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤝</div>
+                    <h4>Communication</h4>
+                    <p>Teamwork, presentation skills, and collaboration</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔍</div>
+                    <h4>Research</h4>
+                    <p>Analysis, critical thinking, and problem-solving</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h4>Organization</h4>
+                    <p>Project management, planning, and time management</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2>My Projects</h2>
+            <p class="section-subtitle">Showcasing my work</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Project Image 1</span>
+                         <img src="https://img.sanishtech.com/u/17c83c74e802a15982caaa99e4242e1d.png" ;alt="Project 1"> -->
+                        
+                             
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive portfolio website with login functionality, showcasing my skills and projects using HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Project Image 2</span>
+                         <img src="https://img.sanishtech.com/u/e77c4c4d942364139e9ebbe8d89c3253.jpg" alt="Project 2"> -->
+                    </div>
+                    <div class="project-content">
+                        <h3>School Project</h3>
+                        <p>Description of your school project, what you learned, technologies used, and the impact or results achieved.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Project Image 3</span>
+                        <img src="https://img.sanishtech.com/u/e6a065c293290db83598935c21e90342.jpg" alt="Project 3"> -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Creative Work</h3>
+                        <p>Share another project - could be design work, research, or any other accomplishment you're proud of.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section class="section" id="hobbies">
+            <h2>Hobbies & Interests</h2>
+            <p class="section-subtitle">What I love to do in my free time</p>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">📚</div>
+                    <h4>Reading</h4>
+                    <p>Exploring different genres and expanding knowledge through books</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎨</div>
+                    <h4>Art & Design</h4>
+                    <p>Creating visual content and exploring creative expression</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎵</div>
+                    <h4>Music</h4>
+                    <p>Listening to various music genres and discovering new artists</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">✈️</div>
+                    <h4>Travel</h4>
+                    <p>Exploring new places and experiencing different cultures</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">📸</div>
+                    <h4>Photography</h4>
+                    <p>Capturing moments and telling stories through images</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">💪</div>
+                    <h4>Fitness</h4>
+                    <p>Staying active and maintaining a healthy lifestyle</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+<section class="section" id="gallery">
+    <h2>Photo Gallery</h2>
+    <p class="section-subtitle">Moments captured in time</p>
+    <div class="photo-gallery">
+        <div class="photo-item">
+            <img src="https://img.sanishtech.com/u/1239f0bb8c452b944b3b278d34779363.jpg" alt="Memory 1">
+            <span class="photo-label">Photo 1</span>
+        </div>
+        <div class="photo-item">
+             <img src="https://img.sanishtech.com/u/a4d584df0c22a31cd5135e79f7a8d61c.jpg" alt="Memory 2"> 
+            <span class="photo-label">Photo 2</span>
+        </div>
+        <div class="photo-item">
+            <img src="https://img.sanishtech.com/u/c64a90852eac3bb3123d40de7e34379b.jpg" alt="Memory 3"> 
+            <span class="photo-label">Photo 3</span>
+        </div>
+        <div class="photo-item">
+             <img src="https://img.sanishtech.com/u/c7ca5e11776762f12d6f35262da90102.jpg" alt="Memory 4"> 
+            <span class="photo-label">Photo 4</span>
+        </div>
+        <div class="photo-item">
+             <img src="https://img.sanishtech.com/u/b49a7f77683c1051c88023a37bcfe54c.jpg" alt="Memory 5"> 
+            <span class="photo-label">Photo 5</span>
+        </div>
+        <div class="photo-item">
+            <img src="https://img.sanishtech.com/u/69e4f139d9b953017020cb8241631dfe.jpg" alt="Memory 6"> 
+            <span class="photo-label">Photo 6</span>
+        </div>
+    </div>
+</section>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Let's connect and collaborate</p>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Ocean Sparkle Cursor Effect
+        const cursorSparkles = [];
+        const maxSparkles = 15;
+
+        for (let i = 0; i < maxSparkles; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'cursor-sparkle';
+            document.body.appendChild(sparkle);
+            cursorSparkles.push({
+                element: sparkle,
+                x: 0,
+                y: 0,
+                delay: i * 0.03,
+                size: 8 - (i * 0.3)
+            });
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let isMoving = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            isMoving = true;
+            
+            setTimeout(() => {
+                isMoving = false;
+            }, 100);
+        });
+
+        function animateSparkles() {
+            cursorSparkles.forEach((sparkle, index) => {
+                const targetX = mouseX - (index * 3);
+                const targetY = mouseY - (index * 3);
+                
+                sparkle.x += (targetX - sparkle.x) * (0.2 - sparkle.delay);
+                sparkle.y += (targetY - sparkle.y) * (0.2 - sparkle.delay);
+                
+                sparkle.element.style.left = sparkle.x + 'px';
+                sparkle.element.style.top = sparkle.y + 'px';
+                sparkle.element.style.opacity = isMoving ? (1 - index * 0.06) : 0;
+                sparkle.element.style.transform = `scale(${sparkle.size / 8}) rotate(${index * 30}deg)`;
+            });
+            
+            requestAnimationFrame(animateSparkles);
+        }
+
+        animateSparkles();
+
+        // Login System
+        const loginForm = document.getElementById('loginForm');
+        const loginContainer = document.getElementById('loginContainer');
+        const portfolioContent = document.getElementById('portfolioContent');
+        const errorMessage = document.getElementById('errorMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Login credentials - Change these to your preferred username and password
+        const credentials = {
+            username: 'mara',
+            password: 'mara2025'
+        };
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.toLowerCase();
+            const password = document.getElementById('password').value;
+            
+            if (username === credentials.username && password === credentials.password) {
+                errorMessage.style.display = 'none';
+                loginContainer.style.display = 'none';
+                portfolioContent.style.display = 'block';
+                window.scrollTo(0, 0);
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to logout?')) {
+                portfolioContent.style.display = 'none';
+                loginContainer.style.display = 'flex';
+                loginForm.reset();
+                errorMessage.style.display = 'none';
+                window.scrollTo(0, 0);
+            }
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Smooth Scrolling with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const navHeight = document.querySelector('.nav-header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
